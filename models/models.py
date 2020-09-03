@@ -78,7 +78,7 @@ def create_model(opt):
         modelD.initialize(opt)
         flowNet.initialize(opt)        
         if not opt.fp16:
-            modelG, modelD, flownet = wrap_model(opt, modelG, modelD, flowNet)
+            modelG, modelD, flowNet = wrap_model(opt, modelG, modelD, flowNet)
         return [modelG, modelD, flowNet]
     else:
         return modelG
@@ -93,7 +93,7 @@ def create_optimizer(opt, models):
         modelG, optimizer_G = amp.initialize(modelG, modelG.optimizer_G, opt_level='O1')
         modelD, optimizers_D = amp.initialize(modelD, [modelD.optimizer_D] + optimizer_D_T, opt_level='O1')
         optimizer_D, optimizer_D_T = optimizers_D[0], optimizers_D[1:]        
-        modelG, modelD, flownet = wrap_model(opt, modelG, modelD, flowNet)
+        modelG, modelD, flowNet = wrap_model(opt, modelG, modelD, flowNet)
     else:        
         optimizer_G = modelG.module.optimizer_G
         optimizer_D = modelD.module.optimizer_D        
