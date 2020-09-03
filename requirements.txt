@@ -1,0 +1,6 @@
+dominate
+requests
+dlib
+scipy
+scikit-image
+numpy==1.16
