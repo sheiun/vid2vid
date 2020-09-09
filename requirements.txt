@@ -1,6 +1,8 @@
+# conda install numpy==1.16 pytorch==1.0.1 torchvision==0.2.2 cudatoolkit=10.0 -c pytorch
 dominate
 requests
 dlib
 scipy
 scikit-image
+opencv-python
 numpy==1.16
