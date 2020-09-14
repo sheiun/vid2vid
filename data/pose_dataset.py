@@ -94,7 +94,7 @@ class PoseDataset(BaseDataset):
         w = Ai.size()[2]
         base = 32
         x_cen = w // 2
-        bs = int(w * 0.25) // base * base
+        bs = int(w *  0.3) // base * base # NOTE: only for sign original 0.25
         return Ai[:,:,(x_cen-bs):(x_cen+bs)]
                
     def normalize_pose(self, A_img, target_yc, target_len, first=False):
