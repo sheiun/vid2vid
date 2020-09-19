@@ -1,5 +1,4 @@
-# conda install pytorch==1.0.1 torchvision==0.2.2 cudatoolkit=10.0 opencv dlib -c pytorch -c conda-forge
-dominate
+# conda install pytorch==1.0.1 torchvision==0.2.2 cudatoolkit=10.0 opencv dlib dominate -c pytorch -c conda-forge
 requests
 scipy
 scikit-image
