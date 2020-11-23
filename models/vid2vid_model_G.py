@@ -162,6 +162,11 @@ class Vid2VidModelG(BaseModel):
                 _, _, _, h, w = real_As.size()                  
                 real_As_reshaped = real_As[:, t:t+tG,...].view(self.bs, -1, h, w).cuda(gpu_id)              
 
+                # NOTE: fix shorter dataset
+                if t + tG > real_As.shape[1]:
+                    print("Skip training due to n_frames_load {} > {}, current time: {}".format(n_frames_load, real_As.shape[1], t))
+                    continue
+
                 # 2. previous fake_Bs                
                 fake_B_prevs = fake_B_pyr[si][:, t:t+tG-1,...].cuda(gpu_id)
                 if (t % self.n_frames_bp) == 0:
