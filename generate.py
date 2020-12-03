@@ -31,9 +31,11 @@ def generate():
         fake_B = util.tensor2im(generated[0].data[0])
 
         makedirs(opt.results_dir, exist_ok=True)
-
-        util.save_image(fake_B, f"{opt.results_dir}/{i:04}.jpg")
-        if i >= opt.how_many - 1:
+        suffix = ".jpg"
+        if "2d" in opt.name:
+            suffix = "_IUV.png"
+        util.save_image(fake_B, f"{opt.results_dir}/{i:05}{suffix}")
+        if i >= min(len(dataset) - opt.start_frame, opt.how_many) - 1:
             break
 
 
