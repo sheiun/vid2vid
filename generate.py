@@ -8,8 +8,10 @@ from models.models import create_model
 from options.test_options import TestOptions
 
 
-def generate():
+def generate(kwargs: dict = {}.copy()):
     opt = TestOptions().parse(save=False)
+    for key, value in kwargs.items():
+        setattr(opt, key, value)
     opt.nThreads = 1  # test code only supports nThreads = 1
     opt.batchSize = 1  # test code only supports batchSize = 1
     opt.serial_batches = True  # no shuffle
@@ -34,7 +36,7 @@ def generate():
         suffix = ".jpg"
         if "2d" in opt.name:
             suffix = "_IUV.png"
-        util.save_image(fake_B, f"{opt.results_dir}/{i:05}{suffix}")
+        util.save_image(fake_B, f"{opt.results_dir}/{i+1:05}{suffix}")
         if i >= min(len(dataset) - opt.start_frame, opt.how_many) - 1:
             break
 
